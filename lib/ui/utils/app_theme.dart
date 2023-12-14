@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 
 
 class MyTheme {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     primaryColor: AppColors.primaryColor ,
-    scaffoldBackgroundColor: AppColors.whiteColor,
+    scaffoldBackgroundColor: AppColors.primaryColor,
     textTheme: TextTheme(
+
         titleSmall: TextStyle(
             fontSize: 18,
             color: AppColors.blackColor.withOpacity(0.7),
