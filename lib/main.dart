@@ -1,3 +1,4 @@
+import 'package:books/ui/screens/details/book_details_screen.dart';
 import 'package:books/ui/screens/splash/splash_screen.dart';
 import 'package:books/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
