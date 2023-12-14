@@ -1,5 +1,10 @@
+import 'package:books/domain/di/di.dart';
+import 'package:books/ui/screens/home/home_screen.dart';
+import 'package:books/ui/screens/splash/splash_view_model.dart';
 import 'package:books/ui/utils/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class SplashScreen extends StatefulWidget {
   static String routeName ="splashRoute";
@@ -11,17 +16,20 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
 
-  late AnimationController animationController ;
-  late Animation<Offset> slidingAnimation ;
 
-
-
+  SplashViewModel viewModel = getIt();
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this,duration:const Duration(seconds: 1));
-    slidingAnimation = Tween<Offset>(begin:const Offset(0, 20) , end:Offset.zero ).animate(animationController);
-    animationController.forward();
+    viewModel.textAnimation(this);
+    Future.delayed( const Duration(seconds: 2),() {
+      Get.to(() => HomeScreen(), transition: Transition.fade , duration:const Duration(milliseconds: 250));
+    },);
+  }
+  @override
+  void dispose() {
+    super.dispose();
+   viewModel.textAnimationDispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -38,10 +46,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         Image.asset(AppAssets.splashLogo),
         const SizedBox(height: 18,),
         AnimatedBuilder(
-          animation: slidingAnimation,
+          animation: viewModel.slidingAnimation,
           builder: (context,_) {
             return SlideTransition(
-              position: slidingAnimation ,
+              position: viewModel.slidingAnimation ,
               child: const Text(
                   "Read Free Books",
                   textAlign: TextAlign.center
