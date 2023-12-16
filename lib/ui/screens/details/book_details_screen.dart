@@ -29,6 +29,7 @@ class BookDetailsScreen extends StatelessWidget {
               child: CardOfImage(
                 height: MediaQuery.of(context).size.height *.3,
                 width: MediaQuery.of(context).size.width *.37,
+                imageUrl: "",
                 isBestSeller: true,
               ),
             ),
@@ -104,6 +105,7 @@ class BookDetailsScreen extends StatelessWidget {
                 itemBuilder: (context, index) =>  CardOfImage(
                   height: MediaQuery.of(context).size.height *.15 ,
                   width: MediaQuery.of(context).size.width *.22,
+                  imageUrl: "",
                   isBestSeller: true,),
                 separatorBuilder: (context, index) => const SizedBox(width: 10,),
                 itemCount: 10,
@@ -118,7 +120,7 @@ class BookDetailsScreen extends StatelessWidget {
     backgroundColor: AppColors.primaryColor,
     elevation: 0.00,
     leading: IconButton(onPressed: (){
-      Get.to(() => HomeScreen(), transition: Transition.fade , duration:const Duration(milliseconds: 250));
+      Get.back();
     }, icon: const Icon(Icons.close,size: 28,)),
     actions:const [
       Icon(Icons.shopping_cart_checkout_outlined),

@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     super.initState();
     viewModel.textAnimation(this);
     Future.delayed( const Duration(seconds: 2),() {
-      Get.to(() => HomeScreen(), transition: Transition.fade , duration:const Duration(milliseconds: 250));
+      Get.off(() => HomeScreen(), transition: Transition.fade , duration:const Duration(milliseconds: 250));
     },);
   }
   @override

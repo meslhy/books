@@ -1,6 +1,7 @@
 import 'package:books/ui/screens/details/book_details_screen.dart';
 import 'package:books/ui/utils/app_assets.dart';
 import 'package:books/ui/utils/app_color.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -10,7 +11,8 @@ class CardOfImage extends StatelessWidget {
   double? height;
   double? width;
   bool isBestSeller;
-   CardOfImage({this.height, this.width , this.isBestSeller = false});
+  String imageUrl;
+   CardOfImage({this.height, this.width , this.isBestSeller = false,required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,23 @@ class CardOfImage extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: [
-            Image.asset(
-              AppAssets.test,
-              height:height ?? MediaQuery.of(context).size.height *.24 ,
-              width:width?? MediaQuery.of(context).size.width *.32,
+            CachedNetworkImage(
+              imageUrl: imageUrl,
+              imageBuilder: (context, imageProvider) => Container(
+                height:height ?? MediaQuery.of(context).size.height *.24 ,
+                width: width?? MediaQuery.of(context).size.width *.32,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                ),
+              ),
+              errorWidget: (_, __, ___) => Image.asset(
+                AppAssets.test,
+                fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height *.24,
+                width: MediaQuery.of(context).size.width * .32,
+              ),
               fit: BoxFit.fill,
             ),
             if(!isBestSeller)

@@ -1,8 +1,6 @@
 abstract class EndPoints {
-  static String baseUrl = "ecommerce.routemisr.com";
-  static String login = "/api/v1/auth/signin";
-  static String register = "/api/v1/auth/signup";
-  static String categories = "/api/v1/categories";
-  static String products = "/api/v1/products";
-  static String cart = "/api/v1/cart";
+  static String baseUrl = "www.googleapis.com/books/v1/";
+  static String books = "volumes?Filtering=free-ebooks&q=subject : sports";
+  static String newestBooks = "volumes?Filtering=free-ebooks&Sorting=newest&q=subject : football";
+
 }
